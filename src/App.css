@@ -17,7 +17,7 @@ header {
 	background-color: #333333;
 	margin-bottom: 20px;
 }
-header .container{
+header{
 	text-align: left;
 }
 header h1 { 
@@ -30,7 +30,9 @@ header h1 span {
 	color: #A0A0A0;
 } 
 
-.container {
+main {
+	width: 55%;
+	margin: 0 auto;
 	text-align: center;
 }
 
@@ -48,7 +50,12 @@ h2 span {
 	font-weight: 600;
 }
 
-.content .buttons button {
+.top {
+	display: flex;
+	justify-content: space-between;
+}
+
+.buttons button {
 	margin-left: 20px;
 }
 

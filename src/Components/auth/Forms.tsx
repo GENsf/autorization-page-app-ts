@@ -1,4 +1,3 @@
-import React from 'react'
 import {FC, useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
@@ -25,7 +24,6 @@ const Forms: FC<FormProps> = ({title, handleClick}) => {
 						placeholder="Enter email" 
 					/>
 				</Form.Group>
-
 				<Form.Group>
 					<Form.Label>Password</Form.Label>
 					<Form.Control 

@@ -1,17 +1,18 @@
-import React from 'react'
-import PhoneItem from './PhoneItem'
 import { useSelector } from 'react-redux';
 
+import { RootState } from '../../store';
+import PhoneItem from './PhoneItem'
 
-export interface PhoneTypes {
-	id: Number,
-	name: String,
-	number: Number
+
+export interface Phone {
+	id: number,
+	name: string,
+	number: number
 }
 
 const PhoneList = () => {
 
-	const phones: [PhoneTypes] = useSelector((state) => state.phone);
+	const phones: Phone[] = useSelector((state: RootState) => state.phone);
 
 	if (!phones.length) {
 		return (

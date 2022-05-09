@@ -1,16 +1,15 @@
-import React from 'react';
 import {Link} from "react-router-dom";
-import {Login} from '../Components/auth/Login';
 
+import {Login} from '../components/auth/Login';
 
 const LoginPage = () => {
 	return (
-		<div>
+		<section>
 				<Login />
 			<p>
 				Or <Link to="/register">register</Link>
 			</p>
-		</div>
+		</section>
 	);
 };
 

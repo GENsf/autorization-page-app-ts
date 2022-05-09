@@ -1,8 +1,9 @@
-import {Forms} from './Forms';
-import {setUser} from '../../store/slices/userSlice';
-import {useNavigate} from 'react-router-dom';
-import {getAuth, createUserWithEmailAndPassword} from "firebase/auth";
-import { UseAppDispatch } from '../../hooks/redux-hooks';
+import { useNavigate } from 'react-router-dom';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
+import { setUser } from '../../store/slices/userSlice';
+import { UseAppDispatch } from '../../hooks/reduxHooks';
+import { Forms } from './Forms';
 
 const Register = () => {
 	const dispatch = UseAppDispatch();

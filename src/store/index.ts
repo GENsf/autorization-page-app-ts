@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
+
 import phoneReducer from './slices/phoneSlice';
 import userReducer from './slices/userSlice';
 

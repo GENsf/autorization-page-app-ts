@@ -1,8 +1,9 @@
-import {Forms} from './Forms';
-import {setUser} from '../../store/slices/userSlice'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { UseAppDispatch } from '../../hooks/redux-hooks';
+
+import { setUser } from '../../store/slices/userSlice'
+import { UseAppDispatch } from '../../hooks/reduxHooks';
+import { Forms } from './Forms';
 
 const Login = () => {
 	const dispatch = UseAppDispatch();

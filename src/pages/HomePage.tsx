@@ -1,21 +1,20 @@
-import React from 'react';
+import { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Navigate } from "react-router-dom";
-import PhoneList from '../Components/phones/PhoneList';
-import { UseAppDispatch } from '../hooks/redux-hooks';
-import { useAuth } from '../hooks/use-auth';
+
+import { UseAppDispatch } from '../hooks/reduxHooks';
+import { useAuth } from '../hooks/useAuth';
 import { removeUser } from '../store/slices/userSlice';
 import { addPhone } from '../store/slices/phoneSlice';
-import { useState } from 'react'
-
+import PhoneList from '../components/phones/PhoneList';
 
 const HomePage = () => {
+	const dispatch = UseAppDispatch();
+
 	const {isAuth, email} = useAuth();
 	const [name, setName] = useState('');
 	const [number, setNumber] = useState('');
-
-	const dispatch = UseAppDispatch();
 
 	const login = (email: null | string) => {
 		if (typeof email == 'string') 
@@ -23,7 +22,8 @@ const HomePage = () => {
 	}
 
 	const add = (): void => {
-		if (!name && !number) return
+		if (name.trim() == "") return alert("Enter the name")
+		if (number.trim() == "") return alert("Enter the number")
 		dispatch(
 			addPhone({
 				name: name,
@@ -31,17 +31,15 @@ const HomePage = () => {
 		}));
 	}
 
-
 	return true ? (
-		<div className='content' style={{width: '80%', margin: '0 auto'}}>
-			<div style={{display: 'flex', justifyContent: 'space-between'}}>
+		<>
+			<section className='top'>
 				<h2>Hello <span>{login(email)}</span></h2>
 				<div className='buttons'>
 					<Button variant="success" onClick={() => add()}>Add number</Button>
 					<Button variant="danger" onClick={() => dispatch(removeUser())}>Log out</Button>
 				</div>
-			</div>
-			<div>
+			</section>
 				<Form>
 					<Form.Group>
 						<Form.Label>Name</Form.Label>
@@ -52,19 +50,19 @@ const HomePage = () => {
 							onChange={(e) => setName(e.target.value)}
 							placeholder="Enter name" 
 						/>
+						<Form.Label>Number</Form.Label>
 						<Form.Control 
-							type="number" 
+							type="tel" 
 							value={number}
 							onChange={(e) => setNumber(e.target.value)}
 							placeholder="Enter number" 
 						/>
 					</Form.Group>
 				</Form>
-			</div>
-			<div className="phone_list">
-				<PhoneList></PhoneList>
-			</div>
-		</div>
+			<section className="phone_list">
+				<PhoneList />
+			</section>
+		</>
 	) : (
 		<>
 			<Navigate replace to="/login"></Navigate>

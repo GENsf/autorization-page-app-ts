@@ -1,10 +1,10 @@
-import React, { FC } from 'react'
 import { Button } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
-import { removePhone } from '../../store/slices/phoneSlice'
-import {PhoneTypes} from './PhoneList'
 
-const PhoneItem = ({ id, name, number }: PhoneTypes) => {
+import { removePhone } from '../../store/slices/phoneSlice'
+import { Phone } from './PhoneList'
+
+const PhoneItem = ({ id, name, number }: Phone) => {
 	const dispatch = useDispatch();
 
 	const handleRemove = () => {
@@ -12,7 +12,7 @@ const PhoneItem = ({ id, name, number }: PhoneTypes) => {
 	}
 
   return (
-	 <div className='phone_item' id={id}>
+	 <div className='phone_item' id={String(id)}>
 		<div className='content'>
 			<p className='phone_name'>
 				{name}
