@@ -1,66 +1,60 @@
 import { useState } from 'react'
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import { Navigate } from "react-router-dom";
 
-import { UseAppDispatch } from '../hooks/reduxHooks';
-import { useAuth } from '../hooks/useAuth';
-import { removeUser } from '../store/slices/userSlice';
-import { addPhone } from '../store/slices/phoneSlice';
-import PhoneList from '../components/phones/PhoneList';
+import { UseAppDispatch } from 'hooks/reduxHooks';
+import { useAuth } from 'hooks/useAuth';
+import { removeUser } from 'store/slices/userSlice';
+import { showAddModal } from 'store/slices/addModalSlice';
+
+import PhoneList from 'components/phones/PhoneList';
+import AddModal from 'components/phones/AddModal';
+import EditModal from 'components/phones/EditModal';
 
 const HomePage = () => {
 	const dispatch = UseAppDispatch();
-
 	const {isAuth, email} = useAuth();
-	const [name, setName] = useState('');
-	const [number, setNumber] = useState('');
-
+	const [searchName, setSearchName] = useState<string>('')
+	const [addShow, setAddShow] = useState<boolean>(false)
+	
 	const login = (email: null | string) => {
 		if (typeof email == 'string') 
 		return email.split('@')[0]
 	}
 
-	const add = (): void => {
-		if (name.trim() == "") return alert("Enter the name")
-		if (number.trim() == "") return alert("Enter the number")
-		dispatch(
-			addPhone({
-				name: name,
-				number: number
-		}));
+	const changeSearch = (value: string) => {
+		setSearchName(value)
 	}
 
-	return true ? (
+	const showModalClick = () => {
+		dispatch(showAddModal({
+			show: true
+		}))
+		setAddShow(true)
+	}
+
+	return isAuth ? (
 		<>
 			<section className='top'>
 				<h2>Hello <span>{login(email)}</span></h2>
+				<input
+					type='text' 
+					id='search'
+					className='search'
+					value={searchName}
+					onChange={(event) => changeSearch(event.target.value)}
+					placeholder='Search'
+				/>
 				<div className='buttons'>
-					<Button variant="success" onClick={() => add()}>Add number</Button>
-					<Button variant="danger" onClick={() => dispatch(removeUser())}>Log out</Button>
+					<button className="add_btn" onClick={() => showModalClick()}>Add number</button>
+					<button className="logout_btn" onClick={() => dispatch(removeUser())}>Log out</button>
 				</div>
 			</section>
-				<Form>
-					<Form.Group>
-						<Form.Label>Name</Form.Label>
-						<Form.Control 
-							id="name"
-							type="text" 
-							value={name}
-							onChange={(e) => setName(e.target.value)}
-							placeholder="Enter name" 
-						/>
-						<Form.Label>Number</Form.Label>
-						<Form.Control 
-							type="tel" 
-							value={number}
-							onChange={(e) => setNumber(e.target.value)}
-							placeholder="Enter number" 
-						/>
-					</Form.Group>
-				</Form>
+			{addShow &&
+			<AddModal addSet={setAddShow} />
+			}
+			<EditModal />
 			<section className="phone_list">
-				<PhoneList />
+				<PhoneList searchValue={searchName} /> 
 			</section>
 		</>
 	) : (

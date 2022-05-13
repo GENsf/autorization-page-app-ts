@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
-import { setUser } from '../../store/slices/userSlice';
-import { UseAppDispatch } from '../../hooks/reduxHooks';
+import { setUser } from 'store/slices/userSlice';
+import { UseAppDispatch } from 'hooks/reduxHooks';
 import { Forms } from './Forms';
 
 const Register = () => {
@@ -19,15 +19,16 @@ const Register = () => {
 						id: user.uid,
 						token: user.refreshToken,
 				  }));
-				  navigate('/');
+				  alert('User ' + email + ' has been successfully registered!')
+				  navigate('/login');
 			 })
 			 .catch((error) => alert(error.message))
   }
   return (
 	 <div>
 		<Forms 
-			title="Register"
-			handleClick={handleRegister}
+			  title="Register"
+			  handleClick={handleRegister} 
 		/>
 	 </div>
   )

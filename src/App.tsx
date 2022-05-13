@@ -1,18 +1,16 @@
 import {Routes, Route} from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import { Container } from "react-bootstrap";
+import 'App.css';
 
-import HomePage from "./pages/HomePage";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
-import NotFoundPage from './pages/NotFoundPage'
+import HomePage from "pages/HomePage";
+import LoginPage from "pages/LoginPage";
+import RegisterPage from "pages/RegisterPage";
+import NotFoundPage from 'pages/NotFoundPage'
 
 function App() {
   return (
 	<>
 		<header>
-			<Container><h1>TakeOff Stuff <span>phonebook</span></h1></Container>
+			<section><h1>TakeOff Stuff <span>phonebook</span></h1></section>
 		</header>
 		<main>
 			<Routes>

@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
-import { setUser } from '../../store/slices/userSlice'
-import { UseAppDispatch } from '../../hooks/reduxHooks';
+import { setUser } from 'store/slices/userSlice'
+import { UseAppDispatch } from 'hooks/reduxHooks';
 import { Forms } from './Forms';
 
 const Login = () => {
@@ -21,7 +21,7 @@ const Login = () => {
                 }));
                 navigate('/');
             })
-            .catch(() => alert('Invalid user!'))
+            .catch((error) => alert(error.message))
 		navigate('/')
 	}
   return (

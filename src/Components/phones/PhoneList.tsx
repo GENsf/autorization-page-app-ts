@@ -1,28 +1,29 @@
-import { useSelector } from 'react-redux';
+import { UseAppSelector } from 'hooks/reduxHooks';
 
-import { RootState } from '../../store';
+import { RootState } from 'store';
+import { IPhone } from 'store/slices/phoneSlice';
 import PhoneItem from './PhoneItem'
 
+type ISearch = {searchValue: string}
 
-export interface Phone {
-	id: number,
-	name: string,
-	number: number
-}
+const PhoneList: React.FC<ISearch>= ({searchValue}) => {
+	const phones: IPhone[] = UseAppSelector((state: RootState) => state.phone);
+	let result: Array<IPhone> = phones
+	let searchText: string = searchValue.toLowerCase();
 
-const PhoneList = () => {
+	if (searchText) {
+		result = phones.filter(item => item.name?.toLowerCase().search(searchText) !== -1 || item.number?.search(searchText) !== -1);
+	}
 
-	const phones: Phone[] = useSelector((state: RootState) => state.phone);
-
-	if (!phones.length) {
+	if (!result.length) {
 		return (
-			<p style={{color: 'gray', textAlign: 'center'}}>No numbers</p>
+			<p className='no_number'>No numbers</p>
 		)
 	}
 
   return (
 	 <ul>
-		 {phones.map((phone) => (
+		 {result.map((phone) => (
 			<PhoneItem key={phone.id} id={phone.id} name={phone.name} number={phone.number}></PhoneItem>
 		 ))}
 	 </ul>

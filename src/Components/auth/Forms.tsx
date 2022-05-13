@@ -1,6 +1,4 @@
 import {FC, useState } from 'react'
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
 
 interface FormProps{
 	title: string;
@@ -14,27 +12,23 @@ const Forms: FC<FormProps> = ({title, handleClick}) => {
   return (
 	 <div>
 			<h1>{title}</h1>
-			<Form>
-				<Form.Group>
-					<Form.Label>Login</Form.Label>
-					<Form.Control 
-						type="email" 
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
-						placeholder="Enter email" 
-					/>
-				</Form.Group>
-				<Form.Group>
-					<Form.Label>Password</Form.Label>
-					<Form.Control 
-						type="password" 
-						value={pass}
-						onChange={(e) => setPass(e.target.value)}
-						placeholder="Password" 
-					/>
-				</Form.Group>
-				<Button onClick={() => handleClick(email, pass)} >{title}</Button>
-			</Form>
+			<form>
+				<label>Email</label>
+				<input 
+					type="email" 
+					value={email}
+					onChange={(e) => setEmail(e.target.value)}
+					placeholder="Enter email" 
+				/>
+				<label>Password</label>
+				<input 
+					type="password" 
+					value={pass}
+					onChange={(e) => setPass(e.target.value)}
+					placeholder="Password" 
+				/>
+				<button className="add_btn" onClick={(elem) => {elem.preventDefault(); handleClick(email, pass)}} >{title}</button>
+			</form>
 	 </div>
   )
 }

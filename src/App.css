@@ -7,8 +7,13 @@
   text-align: center;
 }
 
-h1, h2, h3, h4, p, span{
+h1, h2, h3, h4, p, span, button{
 	color: #333333;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h2 { 
+	font-weight: 600
 }
 
 header {
@@ -16,10 +21,14 @@ header {
 	padding: 40px 0;
 	background-color: #333333;
 	margin-bottom: 20px;
-}
-header{
 	text-align: left;
 }
+
+header section {
+	width: 70%;
+	margin: 0 auto;
+}
+
 header h1 { 
 	font-size: 30px;
 	color: #ffffff;
@@ -36,6 +45,30 @@ main {
 	text-align: center;
 }
 
+button {
+	padding: 5px 14px 7px 14px;
+	border: 0;
+	border-radius: 5px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.add_btn {
+	background-color: green;
+	color: #ffffff;
+}
+.add_btn:hover { 
+	background-color: rgb(0, 161, 0);
+}
+
+.logout_btn {
+	background-color: #dc3545;
+	color: #ffffff;
+}
+.logout_btn:hover { 
+	background-color: #fc4c5d;
+}
+
 form {
 	width: 500px;
 	margin: 0 auto;
@@ -43,16 +76,26 @@ form {
 }
 
 input {
-	margin-bottom: 10px;
+	width: 100%;
+	margin: 3px auto 10px auto;
+	border-radius: 5px;
+	border: 1px solid #A0A0A0;
+	padding: 5px 0 5px 10px;
+	font-size: 16px;
 }
 
-h2 span {
-	font-weight: 600;
+input.search { 
+	width: 50%;
+}
+
+input.error {
+	border: 2px solid #dc3545;
 }
 
 .top {
 	display: flex;
 	justify-content: space-between;
+	margin-bottom: 30px;
 }
 
 .buttons button {
@@ -83,8 +126,51 @@ h2 span {
 	margin-bottom: 0;
 }
 
-.phone_item .delete {
-	padding: 2px 8px 5px 8px;
+.phone_item .edit_btn { 
+	margin-right: 10px;
+}
+
+.phone_item .delete_btn {
+	padding: 3px 9px 6px 9px;
 	border-radius: 20px;
 	line-height: 1;
+	border: 0;
+	background-color: #dc3545;
+	color: #ffffff;
+}
+
+.phone_item .delete_btn:hover { 
+	background-color: #fc4c5d;
+}
+
+.no_number {
+	font-size: 20px;
+	color: gray;
+	text-align: center;
+}
+
+.modal-background {
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-color: #00000099;
+	position: absolute;
+}
+
+.hidden {
+	display: none;
+}
+
+.modal-content { 
+	width: 500px;
+	margin: 70px auto 0 auto;
+	padding: 30px;
+	text-align: left;
+	background-color: #ffffff;
+	border-radius: 10px;
+}
+
+.modal-content h2 { 
+	margin-bottom: 10px;
 }
