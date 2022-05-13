@@ -11,11 +11,15 @@ const EditModal: React.FC = () => {
 	const show: boolean = UseAppSelector((state: RootState) => state.editModal.show);
 	const editName: string = UseAppSelector((state: RootState) => state.editModal.name);
 	const editNumber: string = UseAppSelector((state: RootState) => state.editModal.number);
-	
+
 	const [name, setName] = useState('');
 	const [number, setNumber] = useState('');
-	
-	
+
+	if (show) {
+		setName(editName);
+		setNumber(editNumber);
+	}
+
 	const [errName, setErrName] = useState(false);
 	const [errNumber, setErrNumber] = useState(false);
 

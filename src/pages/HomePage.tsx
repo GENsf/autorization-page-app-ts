@@ -14,6 +14,7 @@ const HomePage = () => {
 	const dispatch = UseAppDispatch();
 	const {isAuth, email} = useAuth();
 	const [searchName, setSearchName] = useState<string>('')
+
 	const [addShow, setAddShow] = useState<boolean>(false)
 	
 	const login = (email: null | string) => {
@@ -50,7 +51,7 @@ const HomePage = () => {
 				</div>
 			</section>
 			{addShow &&
-			<AddModal addSet={setAddShow} />
+			<AddModal {...setAddShow} />
 			}
 			<EditModal />
 			<section className="phone_list">

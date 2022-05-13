@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { showEditModal } from 'store/slices/editModalSlice';
 
@@ -6,7 +7,7 @@ import { removePhone, IPhone } from 'store/slices/phoneSlice'
 
 const PhoneItem = ({ id, name, number }: IPhone) => {
 	const dispatch = useDispatch();
-
+	
 	const handleRemove = () => {
 		const conf: boolean = window.confirm('Are you shure?')
 		if (conf) dispatch(removePhone({
@@ -23,6 +24,8 @@ const PhoneItem = ({ id, name, number }: IPhone) => {
 			name: name,
 			number: number,
 		}))
+
+		
 	}
 
   return (

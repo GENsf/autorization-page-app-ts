@@ -4,9 +4,9 @@ import { addPhone } from 'store/slices/phoneSlice';
 import { RootState } from 'store';
 import { hideAddModal } from 'store/slices/addModalSlice';
 
-type addSet = Dispatch<SetStateAction<boolean>>
+type props = {setAddShow?: Dispatch<SetStateAction<boolean>>}
 
-const AddModal: React.FC<addSet> = (addSet) => {
+const AddModal: React.FC<props> = ({setAddShow}) => {
 	const dispatch = UseAppDispatch();
 	
 	const show: boolean = UseAppSelector((state: RootState) => state.addModal.show);
@@ -43,7 +43,7 @@ const AddModal: React.FC<addSet> = (addSet) => {
 				show: false,
 			})
 		)
-		addSet(false)
+		if (setAddShow) setAddShow(false)
 		setName('')
 		setNumber('')
 	}
