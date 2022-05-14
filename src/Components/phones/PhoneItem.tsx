@@ -21,11 +21,10 @@ const PhoneItem = ({ id, name, number }: IPhone) => {
 	const handleEdit = () => {
 		dispatch(showEditModal({
 			show: true,
+			id: id,
 			name: name,
 			number: number,
 		}))
-
-		
 	}
 
   return (

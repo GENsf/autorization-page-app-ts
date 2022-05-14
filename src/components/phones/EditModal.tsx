@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { UseAppDispatch, UseAppSelector } from 'hooks/reduxHooks';
 import { editPhone } from 'store/slices/phoneSlice';
 import { RootState } from 'store';
@@ -9,19 +9,21 @@ const EditModal: React.FC = () => {
 	const dispatch = UseAppDispatch();
 
 	const show: boolean = UseAppSelector((state: RootState) => state.editModal.show);
+	const editId: number = UseAppSelector((state: RootState) => state.editModal.id);
 	const editName: string = UseAppSelector((state: RootState) => state.editModal.name);
 	const editNumber: string = UseAppSelector((state: RootState) => state.editModal.number);
 
 	const [name, setName] = useState('');
-	const [number, setNumber] = useState('');
-
-	if (show) {
-		setName(editName);
-		setNumber(editNumber);
-	}
-
+	const [number, setNumber] = useState('');	
 	const [errName, setErrName] = useState(false);
 	const [errNumber, setErrNumber] = useState(false);
+
+	useEffect(() => {
+		if (show) {
+			setName(editName);
+			setNumber(editNumber);
+		}
+	}, [show]);
 
 	const edit = (): void => {
 		if (name.trim() == '') {
@@ -36,6 +38,7 @@ const EditModal: React.FC = () => {
 		setErrNumber(false);
 			dispatch(
 				editPhone({
+					id: editId,
 					name: name,
 					number: number,
 				})
@@ -49,6 +52,7 @@ const EditModal: React.FC = () => {
 		dispatch(
 			hideEditModal({
 				show: false,
+				id: 0,
 				name: '',
 				number: ''
 			})
@@ -79,7 +83,7 @@ const EditModal: React.FC = () => {
 					placeholder="Enter number" 
 				/>
 			</form>
-			<button className="add_btn" onClick={() => edit()}>Edit</button>
+			<button className="add_btn" onClick={() => edit()}>Save</button>
 		 </div>
 	 </div>
   )

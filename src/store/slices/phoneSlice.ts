@@ -30,7 +30,16 @@ const phoneSlice = createSlice({
 			return state.filter((phone: IPhone) => phone.id !== action.payload.id);
 		},
 		editPhone: (state: IPhone[], action: PayloadAction<IPhone>) => {
-			
+			let indexEditPhone: number = -1
+			for (let i = 0; i < state.length; i++) {
+				if (state[i].id === action.payload.id) indexEditPhone = i;
+			}
+			const editPhone: IPhone = {
+				id: action.payload.id,
+				name: action.payload.name,
+				number: action.payload.number,
+			}
+			state.splice(indexEditPhone, 1, editPhone);
 		}
 	}
 });
