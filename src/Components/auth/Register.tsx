@@ -1,15 +1,16 @@
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
+import { AppDispatch } from 'store';
 import { setUser } from 'store/slices/userSlice';
-import { UseAppDispatch } from 'hooks/reduxHooks';
 import { Forms } from './Forms';
 
-const Register = () => {
-	const dispatch = UseAppDispatch();
+const Register: React.FC = () => {
+	const dispatch: AppDispatch = useDispatch()
 	const navigate = useNavigate()
 
-	const handleRegister = (email: string, password: string) => {
+	const handleRegister = (email: string, password: string): void => {
 		if (!email && !password) return
 		const auth = getAuth();
 		createUserWithEmailAndPassword(auth, email, password)
@@ -25,12 +26,10 @@ const Register = () => {
 			 .catch((error) => alert(error.message))
   }
   return (
-	 <div>
-		<Forms 
-			  title="Register"
-			  handleClick={handleRegister} 
-		/>
-	 </div>
+	<Forms 
+			title="Register"
+			handleClick={handleRegister} 
+	/>
   )
 }
 

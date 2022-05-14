@@ -12,10 +12,10 @@ const addModalSlice = createSlice({
 	name: 'addModal',
 	initialState,
 	reducers: {
-		showAddModal: (state: IAddModal, action: PayloadAction<IAddModal>) => {
+		showAddModal: (state: IAddModal, action: PayloadAction<IAddModal>): void => {
 			state.show = true;
 		},
-		hideAddModal: (state: IAddModal, action: PayloadAction<IAddModal>) => {
+		hideAddModal: (state: IAddModal, action: PayloadAction<IAddModal>): void => {
 			state.show = false;
 		},
 	},

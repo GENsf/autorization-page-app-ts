@@ -1,34 +1,33 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux'
-import { showEditModal } from 'store/slices/editModalSlice';
+import { useDispatch } from 'react-redux';
 
+import { AppDispatch } from 'store';
+import { showEditModal } from 'store/slices/editModalSlice';
 import { removePhone, IPhone } from 'store/slices/phoneSlice'
 
-
-const PhoneItem = ({ id, name, number }: IPhone) => {
-	const dispatch = useDispatch();
+const PhoneItem: React.FC<IPhone> = ({ id, name, number }) => {
+	const dispatch: AppDispatch = useDispatch();
 	
-	const handleRemove = () => {
-		const conf: boolean = window.confirm('Are you shure?')
-		if (conf) dispatch(removePhone({
-			id: id,
-			name: name,
-			number: number
-		}))
-		return
+	function handleRemove(): void {
+		const conf: boolean = window.confirm('Are you shure?');
+		if (conf)
+			dispatch(removePhone({
+				id: id,
+				name: name,
+				number: number
+			}));
 	}
 
-	const handleEdit = () => {
+	function handleEdit(): void {
 		dispatch(showEditModal({
 			show: true,
 			id: id,
 			name: name,
 			number: number,
-		}))
+		}));
 	}
 
   return (
-	 <section className='phone_item' key={id}>
+	 <li className='phone_item' key={id}>
 		<div className='content'>
 				<p className='phone_name'>
 					{name}
@@ -41,7 +40,7 @@ const PhoneItem = ({ id, name, number }: IPhone) => {
 			<button className='edit_btn' onClick={handleEdit}>edit</button>
 			<button className='delete_btn' onClick={handleRemove}>x</button>
 		</div>
-	 </section>
+	 </li>
   )
 }
 

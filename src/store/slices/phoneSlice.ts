@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export type IPhone = {
+export interface IPhone {
 	id?: number,
 	name: string,
 	number: string,
@@ -18,7 +18,7 @@ const phoneSlice = createSlice({
 	name: 'phones',
 	initialState,
 	reducers: {
-		addPhone: (state: IPhone[], action: PayloadAction<IPhone>) => {
+		addPhone: (state: IPhone[], action: PayloadAction<IPhone>): void => {
 			const newPhone = {
 				id: action.payload.id,
 				name: action.payload.name,
@@ -26,10 +26,10 @@ const phoneSlice = createSlice({
 			}
 			state.push(newPhone);
 		},
-		removePhone: (state: IPhone[], action: PayloadAction<IPhone>) => {
+		removePhone: (state: IPhone[], action: PayloadAction<IPhone>): IPhone[] => {
 			return state.filter((phone: IPhone) => phone.id !== action.payload.id);
 		},
-		editPhone: (state: IPhone[], action: PayloadAction<IPhone>) => {
+		editPhone: (state: IPhone[], action: PayloadAction<IPhone>): void => {
 			let indexEditPhone: number = -1
 			for (let i = 0; i < state.length; i++) {
 				if (state[i].id === action.payload.id) indexEditPhone = i;

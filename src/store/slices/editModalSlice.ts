@@ -18,13 +18,13 @@ const editModalSlice = createSlice({
 	name: 'editModal',
 	initialState,
 	reducers: {
-		showEditModal: (state: IEditModal, action: PayloadAction<IEditModal>) => {
+		showEditModal: (state: IEditModal, action: PayloadAction<IEditModal>): void => {
 			state.show = true;
 			state.id = action.payload.id;
 			state.name = action.payload.name;
 			state.number = action.payload.number;
 		},
-		hideEditModal: (state: IEditModal, action: PayloadAction<IEditModal>) => {
+		hideEditModal: (state: IEditModal, action: PayloadAction<IEditModal>): void => {
 			state.show = false;
 			state.id = action.payload.id;
 			state.name = action.payload.name;

@@ -2,7 +2,7 @@ import {Link} from "react-router-dom";
 
 import { Register } from 'components/auth/Register';
 
-const RegisterPage = () => {
+const RegisterPage: React.FC = () => {
 	return (
 		<section>
 			<Register />

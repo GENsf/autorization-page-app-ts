@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 
-const NotfoundPage =() => {
+const NotfoundPage: React.FC = () => {
   return (
 	 <section>
 		<h1>Page Not Found</h1>

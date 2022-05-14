@@ -1,31 +1,40 @@
-import { Dispatch, SetStateAction, useState } from 'react'
-import { UseAppDispatch, UseAppSelector } from 'hooks/reduxHooks';
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+
 import { addPhone } from 'store/slices/phoneSlice';
-import { RootState } from 'store';
+import { AppDispatch, RootState } from 'store';
 import { hideAddModal } from 'store/slices/addModalSlice';
 
-type props = {setAddShow?: Dispatch<SetStateAction<boolean>>}
-
-const AddModal: React.FC<props> = ({setAddShow}) => {
-	const dispatch = UseAppDispatch();
+const AddModal: React.FC = () => {
+	const dispatch: AppDispatch = useDispatch();
 	
-	const show: boolean = UseAppSelector((state: RootState) => state.addModal.show);
-	
-	const [name, setName] = useState('');
-	const [number, setNumber] = useState('');
-	const [errName, setErrName] = useState(false);
-	const [errNumber, setErrNumber] = useState(false);
+	const show: boolean = useSelector((state: RootState) => state.addModal.show);
+	const [name, setName] = useState<string>('');
+	const [number, setNumber] = useState<string>('');
+	const [errName, setErrName] = useState<boolean>(false);
+	const [errNumber, setErrNumber] = useState<boolean>(false);
 
-	const add = (): void => {
-		if (name.trim() == '') {
-			setErrName(true);
-			return
-		}
+	function nameChange(name: string): void {
+		setName(name);
+	};
+	function numberChange(number: string): void {
+		setNumber(number);
+	};
+
+	function closeModal(): void {
+		dispatch(
+			hideAddModal({
+				show: false,
+			})
+		);
+		setName('');
+		setNumber('');
+	}
+
+	function add(): void {
+		if (name.trim() == '') { setErrName(true); return }
 		setErrName(false);
-		if (number.trim() == '') {
-			setErrNumber(true);
-			return
-		}
+		if (number.trim() == '') { setErrNumber(true); return }
 		setErrNumber(false);
 
 		dispatch(
@@ -33,24 +42,15 @@ const AddModal: React.FC<props> = ({setAddShow}) => {
 				id: Date.now(),
 				name: name,
 				number: number
-		}))
-		closeModal()
+			}));
+		
+		closeModal();
 	}
 
-	const closeModal = (): void => {
-		dispatch(
-			hideAddModal({
-				show: false,
-			})
-		)
-		if (setAddShow) setAddShow(false)
-		setName('')
-		setNumber('')
-	}
-	
+
   return (
-	 <div className={`modal-background ${show ? 'show' : 'hidden'}`} onClick={() => closeModal()}>
-		 <div className="modal-content" onClick={(element) => element.stopPropagation()}>
+	 <div className={`modal-background ${show ? 'show' : 'hidden'}`} onClick={closeModal}>
+		 <div className="modal-content" onClick={(event) => event.stopPropagation()}>
 		 	<h2>Add new phone number</h2>
 			<form>
 				<label>Name</label>
@@ -59,7 +59,7 @@ const AddModal: React.FC<props> = ({setAddShow}) => {
 					className={errName ? 'error' : ''}
 					type="text"
 					value={name}
-					onChange={(event) => setName(event.target.value)}
+					onChange={(event) => nameChange(event.target.value)}
 					placeholder="Enter name" 
 				/>
 				<label>Number</label>
@@ -68,11 +68,11 @@ const AddModal: React.FC<props> = ({setAddShow}) => {
 					className={errNumber ? 'error' : ''}
 					type="tel" 
 					value={number}
-					onChange={(event) => setNumber(event.target.value.replace(/[^+\d]/g, ''))}
+					onChange={(event) => numberChange(event.target.value.replace(/[^+\d]/g, ''))}
 					placeholder="Enter number" 
 				/>
 			</form>
-			<button className="add_btn" onClick={() => add()}>Add</button>
+			<button className="add_btn" onClick={add}>Add</button>
 		 </div>
 	 </div>
   )
