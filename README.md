@@ -1,6 +1,6 @@
 ## Test task for "TakeOff Stuff"
 
-Stack:
+### Stack:
  - React
  - Redux/toolkit
  - Typescript
