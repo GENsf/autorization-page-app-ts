@@ -1,15 +1,27 @@
 import {Routes, Route} from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import 'App.css';
 
 import HomePage from 'pages/HomePage';
 import LoginPage from 'pages/LoginPage';
 import RegisterPage from 'pages/RegisterPage';
 import NotFoundPage from 'pages/NotFoundPage';
-import { useSelector } from 'react-redux';
 import { RootState } from 'store';
 
 function App() {
-  const isLoad: boolean = useSelector((state: RootState) => state.user.isLoad);
+  const [isLoad, setIsLoad] = useState(false);
+  const isLoadStore: boolean = useSelector((state: RootState) => state.user.isLoad);
+  
+  useEffect(() => {
+    setIsLoad(false);
+  }, []);
+  
+  useEffect(() => {
+    setIsLoad(isLoadStore);
+  }, [setIsLoad, isLoadStore]);
+
+
   return (
     <>
       <header>
