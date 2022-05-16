@@ -19,6 +19,7 @@ const HomePage: React.FC = () => {
   
   function login(): string | void {
     if (email) return email.split('@')[0];
+    return '';
   }
 
   function logout(): void {
