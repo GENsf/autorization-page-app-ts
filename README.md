@@ -13,4 +13,3 @@
 	2 Start in Code editor
 	3 Run `npm install`
 	4 Run `npm start`
-	`Код` в строке обрамляется `обратными апострофами`.
