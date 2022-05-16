@@ -1,37 +1,42 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface IAuth {
-	id: string | null,
-	email: string | null,
-	password?: string | null,
-	token?: string | null
+  id?: string,
+  email?: string | null,
+  password?: string,
+  token?: string,
+  isLoad?: boolean,
 }
 
 const initialState = {
-	id: null,
-	email: null,
-	password: null,
-	token: null,
+  id: '',
+  email: '',
+  password: '',
+  token: '',
+  isLoad: false,
 };
 
 const userSlice = createSlice({
-	name: 'user',
-	initialState,
-	reducers: {
-		setUser: (state: IAuth, action: PayloadAction<IAuth>): void => {
-			state.id = action.payload.id;
-			state.email = action.payload.email;
-			state.password = action.payload.password;
-			state.token = action.payload.token;
-		},
-		removeUser: (state: IAuth): void => {
-			state.id = null;
-			state.email = null;
-			state.password = null;
-			state.token = null;
-		}
-	},
+  name: 'user',
+  initialState,
+  reducers: {
+    setUser: (state: IAuth, action: PayloadAction<IAuth>): void => {
+      state.id = action.payload.id;
+      state.email = action.payload.email;
+      state.password = action.payload.password;
+      state.token = action.payload.token;
+    },
+    removeUser: (state: IAuth): void => {
+      state.id = '';
+      state.email = '';
+      state.password = '';
+      state.token = '';
+    },
+    toggleLoader: (state: IAuth, action: PayloadAction<IAuth>): void => {
+      state.isLoad = action.payload.isLoad;
+    },
+  },
 });
 
-export const { setUser, removeUser } = userSlice.actions;
+export const { setUser, removeUser, toggleLoader } = userSlice.actions;
 export default userSlice.reducer;

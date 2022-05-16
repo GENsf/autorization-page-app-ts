@@ -44,6 +44,39 @@ main {
 	margin: 0 auto;
 	text-align: center;
 }
+main.loader {
+	overflow-y: hidden;
+}
+main.loader::before {
+	content: '';
+	position: absolute;
+	right: 0;
+	left: 0;
+	height: 50vh;
+	background-color: #ffffff90;
+}
+main.loader::after {
+	content: '';
+	position: absolute;
+	width: 70px;
+	height: 70px;
+	margin: -170px auto 0 auto;
+	left: 0;
+	right: 0;
+	border: 5px solid transparent;
+	border-bottom: 5px solid #A0A0A0;
+	border-radius: 100px;
+	animation: preloader-rotate .3s infinite linear;
+}
+
+@keyframes preloader-rotate {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
 
 button {
 	padding: 5px 14px 7px 14px;

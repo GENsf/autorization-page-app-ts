@@ -13,6 +13,7 @@
     "@types/react-dom": "^18.0.0",
     "@types/react-redux": "^7.1.24",
     "@types/react-router-dom": "^5.3.3",
+    "eslint": "^8.15.0",
     "firebase": "^9.6.11",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
@@ -27,13 +28,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "eject": "react-scripts eject",
+    "lint": "eslint -c .eslintrc",
+    "lint:fix": "npm run lint -- --fix"
   },
   "browserslist": {
     "production": [

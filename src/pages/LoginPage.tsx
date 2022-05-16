@@ -1,16 +1,16 @@
-import {Link} from "react-router-dom";
+import {Link} from 'react-router-dom';
 
 import {Login} from 'components/auth/Login';
 
 const LoginPage: React.FC = () => {
-	return (
-		<section>
-				<Login />
-			<p>
+  return (
+    <section>
+      <Login />
+      <p>
 				Or <Link to="/register">register</Link>
-			</p>
-		</section>
-	);
+      </p>
+    </section>
+  );
 };
 
 export default LoginPage;

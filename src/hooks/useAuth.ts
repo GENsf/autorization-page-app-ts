@@ -8,12 +8,12 @@ export interface IUseAuth extends IAuth {
 }
 
 export const useAuth = (): IUseAuth => {
-	const {id, email, password}: IAuth = useSelector((state: RootState) => state.user);
+  const {id, email, password}: IAuth = useSelector((state: RootState) => state.user);
 
-	return {
-		isAuth: !!email,
-		id,
-		email,
-		password
-	}
-}
+  return {
+    isAuth: !!email,
+    id,
+    email,
+    password,
+  };
+};

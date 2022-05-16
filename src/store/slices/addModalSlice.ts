@@ -1,24 +1,24 @@
-import { createSlice, PayloadAction} from '@reduxjs/toolkit'
+import { createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 type IAddModal = {
-	show: boolean,
+  show: boolean,
 }
 
 const initialState = {
-	show: false
+  show: false,
 };
 
 const addModalSlice = createSlice({
-	name: 'addModal',
-	initialState,
-	reducers: {
-		showAddModal: (state: IAddModal, action: PayloadAction<IAddModal>): void => {
-			state.show = true;
-		},
-		hideAddModal: (state: IAddModal, action: PayloadAction<IAddModal>): void => {
-			state.show = false;
-		},
-	},
+  name: 'addModal',
+  initialState,
+  reducers: {
+    showAddModal: (state: IAddModal, action: PayloadAction<IAddModal>): void => {
+      state.show = true;
+    },
+    hideAddModal: (state: IAddModal, action: PayloadAction<IAddModal>): void => {
+      state.show = false;
+    },
+  },
 });
 
 export const { showAddModal, hideAddModal } = addModalSlice.actions;
