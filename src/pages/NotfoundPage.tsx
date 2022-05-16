@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 
-const NotfoundPage: React.FC = () => {
+const NotFoundPage: React.FC = () => {
   return (
 	 <section>
       <h1>Page Not Found</h1>
@@ -12,4 +12,4 @@ const NotfoundPage: React.FC = () => {
   );
 };
 
-export default NotfoundPage;
+export default NotFoundPage;
