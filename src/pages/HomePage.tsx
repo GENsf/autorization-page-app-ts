@@ -17,7 +17,7 @@ const HomePage: React.FC = () => {
   const {isAuth, email} = useAuth();
   const [searchName, setSearchName] = useState<string>('');
   
-  function login(): string | void {
+  function login(): string {
     if (email) return email.split('@')[0];
     return '';
   }
