@@ -12,7 +12,7 @@ const Forms: FC<FormProps> = ({title, handleClick}) => {
   return (
     <>
       <h1>{title}</h1>
-      <form>
+      <form className='autorization'>
         <label>Email</label>
         <input 
           type="email" 

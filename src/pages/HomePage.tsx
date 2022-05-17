@@ -40,18 +40,17 @@ const HomePage: React.FC = () => {
     <>
       <section className='top'>
         <h2>Hello <span>{login()}</span></h2>
+        <div className='buttons'>
+          <button className="add_btn" onClick={addModal}>Add</button>
+          <button className="logout_btn" onClick={logout}>Logout</button>
+        </div>
         <input
           type='text' 
-          id='search'
           className='search'
           value={searchName}
           onChange={(event) => changeSearch(event.target.value)}
           placeholder='Search'
         />
-        <div className='buttons'>
-          <button className="add_btn" onClick={addModal}>Add number</button>
-          <button className="logout_btn" onClick={logout}>Log out</button>
-        </div>
       </section>
       <AddModal />
       <EditModal />

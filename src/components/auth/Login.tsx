@@ -22,12 +22,12 @@ const Login: React.FC = () => {
           token: user.refreshToken,
         }));
         dispatch(toggleLoader({isLoad: false }));
+        navigate('/');
       })
       .catch((error) => {
         alert(error.message);
         dispatch(toggleLoader({isLoad: false }));
       });
-    navigate('/');
   }
 
   return (
