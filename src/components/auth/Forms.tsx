@@ -14,18 +14,18 @@ const Forms: FC<FormProps> = ({title, handleClick}) => {
       <h1>{title}</h1>
       <form className='autorization'>
         <label>Email</label>
-        <input 
-          type="email" 
+        <input
+          type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter email" 
+          placeholder="Enter email"
         />
         <label>Password</label>
-        <input 
-          type="password" 
+        <input
+          type="password"
           value={pass}
           onChange={(e) => setPass(e.target.value)}
-          placeholder="Enter password" 
+          placeholder="Enter password"
         />
         <button className="add_btn" onClick={
           (event) => {event.preventDefault(); handleClick(email, pass);

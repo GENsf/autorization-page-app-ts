@@ -16,7 +16,7 @@ const HomePage: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const {isAuth, email} = useAuth();
   const [searchName, setSearchName] = useState<string>('');
-  
+
   function login(): string {
     if (email) return email.split('@')[0];
     return '';
@@ -45,7 +45,7 @@ const HomePage: React.FC = () => {
           <button className="logout_btn" onClick={logout}>Logout</button>
         </div>
         <input
-          type='text' 
+          type='text'
           className='search'
           value={searchName}
           onChange={(event) => changeSearch(event.target.value)}
@@ -55,7 +55,7 @@ const HomePage: React.FC = () => {
       <AddModal />
       <EditModal />
       <section className="phone_list">
-        <PhoneList searchValue={searchName} /> 
+        <PhoneList searchValue={searchName} />
       </section>
     </>
   ) : (

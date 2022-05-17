@@ -12,7 +12,7 @@ const Login: React.FC = () => {
   function handleLogin(email: string, password: string): void {
     if (!email && !password) return;
     dispatch(toggleLoader({isLoad: true }));
-    
+
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
@@ -31,7 +31,7 @@ const Login: React.FC = () => {
   }
 
   return (
-    <Forms 
+    <Forms
       title="Log In"
       handleClick={handleLogin}
     />

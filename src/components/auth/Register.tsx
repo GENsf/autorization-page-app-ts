@@ -32,9 +32,9 @@ const Register: React.FC = () => {
       });
   };
   return (
-    <Forms 
+    <Forms
       title="Register"
-      handleClick={handleRegister} 
+      handleClick={handleRegister}
     />
   );
 };
